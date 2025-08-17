@@ -4,9 +4,9 @@ import ThemeCards from './ThemeCards';
 import ContentCards from './ContentCards';
 function NavbarHome({switchComponent}) {
   
-const handleReplace =() =>{
-      switchComponent(ThemeCards,{component: "",mpros: { }})
-   }   
+// const handleReplace =() =>{
+//       switchComponent(ThemeCards,{component: "",mpros: { }})
+//    }   
   return (
      <nav className='topNav'>
       <ul className='menu-lists'>

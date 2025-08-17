@@ -1,12 +1,13 @@
 import React from 'react';
 import { productsInfos } from '../../data';
 import ContentCard from './ContentCard';
-const ThemeCards = ({switchComponent, theme}) => {
+
+const ThemeCards = ({switchComponent, config}) => {
+  console.log(switchComponent,"Themecards");
     const productsSelect = (product) => {
-    return product.productType === theme.component;
+    return product.productType === config.component;
 }
     const themeProducts = productsInfos.filter(productsSelect);
-//  console.log(themeProducts);
   return (
      <div>
      {themeProducts.map((productsInfoP) => (

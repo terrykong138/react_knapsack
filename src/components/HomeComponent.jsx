@@ -1,13 +1,15 @@
 import React from 'react';
-import { useState,useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import NavbarHome from './NavbarHome';
 import ContentCards from './ContentCards';
 import ThemeCards from './ThemeCards';
+import ViewDetails from './ViewDetails';
 const HomeComponent = ({switchComponent}) => {
 const [keyComponent, setActiveComponent] = useState({component:"All", pros:{}});
 const  formComponents = {
   All: ContentCards,
-  Theme: ThemeCards
+  Theme: ThemeCards,
+  ViewDetail: ViewDetails
 }
 
 const handleSwitch = ({component, pros}) => {
@@ -15,8 +17,8 @@ const handleSwitch = ({component, pros}) => {
 }
 
 // ================================
-const [CurrentComponent, setCurrentComponent] = useState(() => ContentCards );
-const [componentConfig, setComponentConfig] = useState({component: "Home", mpros: {id: 1,
+const [CurrentComponent, setCurrentComponent] = useState((swith) => ThemeCards );
+const [componentConfig, setComponentConfig] = useState({component: "All", mpros: {id: 1,
      imageSrc: "./src/assets/pho-advanture-pro-40l.jpeg",
      productType: "Hiking",
      isInStock: true,
@@ -26,18 +28,20 @@ const [componentConfig, setComponentConfig] = useState({component: "Home", mpros
     reviewsCount:445,
      price: 149.99    
     }});
-  const handleReplaceComponent = useCallback((newComponent, config) => {
+  const handleReplaceComponent =useCallback((newComponent, config) => {
     setCurrentComponent(() => newComponent);
     setComponentConfig(config);
-  }, []) 
-// const selectedComponent = formComponents[activeComponent];
+  },[]) ;
+
+  // =================================
+ const SelectedComponent = formComponents[componentConfig.component];
   return (
     <div>
       <NavbarHome   switchComponent={handleReplaceComponent} />
-      <CurrentComponent  config={componentConfig}/> 
+       <CurrentComponent switchComponent={handleReplaceComponent} config={componentConfig} /> 
 
-       {/* {componentConfig.component === "All" ? ( <ContentCards   switchComponent={handleReplaceComponent}/> ) : (
-        <ThemeCards  switchComponent={handleReplaceComponent} theme={keyComponent.component} />
+        {/* {componentConfig.component === "All" ? ( <SelectedComponent  switchComponentC={handleReplaceComponent} /> ) : (
+        <SelectedComponent  switchComponent={handleReplaceComponent} config={componentConfig}  />
         )}  */}
     </div>
   );

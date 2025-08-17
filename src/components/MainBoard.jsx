@@ -16,7 +16,7 @@ const MainBoard = () => {
 const [activeComponent, setActiveComponent] = useState({component:"Home", pros:{isLogIn: false, itemText: "Log In" }} );
 const [activeLogInState, setActiveLogInState] = useState({isLogIn: false, itemText: "Log In"})
 const [CurrentComponent, setCurrentComponent] = useState(() => HomeComponent);
-const [componentConfig, setComponentConfig] = useState({component: "Home", pros: {id: 1,
+const [componentConfig, setComponentConfig] = useState({component: "Home", mpros: {id: 1,
      imageSrc: "./src/assets/pho-advanture-pro-40l.jpeg",
      productType: "Hiking",
      isInStock: true,

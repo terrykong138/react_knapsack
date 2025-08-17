@@ -1,18 +1,19 @@
-import React from 'react'
+import React from 'react';
+ import { useState,useCallback } from 'react';
 import ViewDetails from './ViewDetails';
-const ContentCard = ( {switchComponent, imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP,  keyFeaturesP, priceP } ) => {
-   console.log(switchComponent);
-   const handleReplace = () =>{
-      switchComponent(ViewDetails,{
-imageSrc: imageSrcP,
-productType: productTypeP,
-isInStock: isInStockP,
-productTitle: productTitleP,
-productDescription: productDescriptionP,
-keyFeatures: reviewsCountP,
-reviewsCount: keyFeaturesP,
-price: priceP })
-   }
+const ContentCard = ( {switchComponentEnd, configEnd,imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP,  keyFeaturesP, priceP } ) => {
+   console.log(switchComponentEnd,"contentCardSE");
+//    const handleReplaceC = () =>{
+//       switchComponentEnd(ViewDetails,{component: "ViewDetails", mpros: {
+// imageSrc: imageSrcP,
+// productType: productTypeP,
+// isInStock: isInStockP,
+// productTitle: productTitleP,
+// productDescription: productDescriptionP,
+// keyFeatures: reviewsCountP,
+// reviewsCount: keyFeaturesP,
+// price: priceP }})
+//    }
     return (
     <div className='card'>
         <div className='box-image'>
@@ -34,7 +35,18 @@ price: priceP })
             <h2>${priceP}</h2> 
         </div>
         <div>
-            <button id="viewDetails" onClick={handleReplace}>View Details</button>   
+            {/* +++++++++++++++++= */}
+            <button id="viewDetails" onClick={() =>{
+     switchComponentEnd(ViewDetails, {component: "ViewDetails", mpros: {
+        imageSrc: imageSrcP,
+        productType: productTypeP,
+        isInStock: isInStockP,
+        productTitle: productTitleP,
+        productDescription: productDescriptionP,
+        keyFeatures: keyFeaturesP,
+        reviewsCount: reviewsCountP,
+        price: priceP }})}}
+            >View Details</button>   
             {isInStockP === true ? (<button id="addToCart"  >Add to Cart</button>):( <button id="addToCart" disabled >Add to Cart</button>)} 
         </div>
     </div>
