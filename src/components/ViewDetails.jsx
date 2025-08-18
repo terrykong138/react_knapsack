@@ -3,6 +3,9 @@ import React from 'react';
 const ViewDetails = ({switchComponent, config}) => {
 //   {imageSrcV, productTypeV, isInStockV, productTitleV, reviewsCountV,productDescriptionV, keyFeaturesV, priceV }
    console.log(config,"ViewDetails pros", switchComponent,"VDswitchComponent" );
+const handleAddItems = () => {
+    
+}
 
 return (
       <div className='card'>
