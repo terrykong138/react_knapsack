@@ -13,22 +13,26 @@ import ViewDetails from "./ViewDetails"
 import CartForm from './CartForm';
 
 const MainBoard = () => {
-const [activeComponent, setActiveComponent] = useState({component:"Home", pros:{isLogIn: false, itemText: "Log In" }} );
+const [activeComponent, setActiveComponent] = useState({component:"Home", pros:{isLogIn: false, itemText: "Home" }} );
 const [activeLogInState, setActiveLogInState] = useState({isLogIn: false, itemText: "Log In"})
 const [CurrentComponent, setCurrentComponent] = useState(() => HomeComponent);
-const [componentConfig, setComponentConfig] = useState({component: "Home", mpros: {id: 1,
-     imageSrc: "./src/assets/pho-advanture-pro-40l.jpeg",
-     productType: "Hiking",
-     isInStock: true,
-     productTitle: "Adventure Pro 40L",
-     productDescription: "Perfect for multi-day hiking adventures with ergonomic design and weather protection.", 
-     keyFeatures: ["40L", "Ergonomic Straps", "Waterproof", "Multiple Compartments"],
-    reviewsCount:445,
-     price: 149.99    
-    }});
-  const handleReplaceComponent = useCallback((newComponent, config) => {
+const [componentConfig, setComponentConfig] = useState({component: "Home", mpros: {isLogIn: false, sourceItemId: "HomeComponent", itemText: "Log In" }});
+
+const handleReplaceComponent = useCallback((newComponent, config) => {
+   
     setCurrentComponent(() => newComponent);
     setComponentConfig(config);
+    console.log("window.myKnapsackData.isLogIn", window.myKnapsackData.isLogIn,"config.mpros.sourceItemId",config,"component",config.component);
+      if (window.myKnapsackData.isLogIn===false && config.mpros.sourceItemId==="Submit" ){
+           const signInElement = document.getElementById("logIn");
+           signInElement.textContent ="DashBoard";
+           window.myKnapsackData[0] = true;
+           const signUpElement = document.getElementById("singUp");
+
+           signUpElement.textContent ="Sign Out";
+           signUpElement.style.color = "red";
+        
+      };
   }, []);  
 const  formComponents = {
   Home: HomeComponent,
@@ -63,10 +67,10 @@ const handleSwitchLogIn = () =>{
  console.log(SelectedComponent);
   return (
     <div>
-      <Navbar switchComponent={ handleSwitch } logInPros={activeComponent.pros} />  
-      <HomeComponent switchComponent={handleReplaceComponent} />  
+      <Navbar switchComponent={ handleReplaceComponent } />  
+      {/* <SelectedComponent switchComponent={handleSwitch} />   */}
       {/* < SelectedComponent switchComponent={handleSwitch} spros={activeComponent.pros} /> */}
-       <CurrentComponent config={componentConfig} /> 
+       <CurrentComponent switchComponent={handleReplaceComponent} config={componentConfig} />  
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
  import { useState,useCallback } from 'react';
 import ViewDetails from './ViewDetails';
-const ContentCard = ( {switchComponentEnd, configEnd,imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP,  keyFeaturesP, priceP } ) => {
+const ContentCard = ( {switchComponentEnd, configEnd,imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP, keyFeaturesP, priceP } ) => {
    console.log(switchComponentEnd,"contentCardSE");
 //    const handleReplaceC = () =>{
 //       switchComponentEnd(ViewDetails,{component: "ViewDetails", mpros: {

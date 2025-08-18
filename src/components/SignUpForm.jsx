@@ -1,6 +1,19 @@
-import React from 'react'
-
+import React from 'react';
+import LogInForm from './LoginForm';
+import HomeComponent from './HomeComponent';
 const SignUpForm = ({switchComponent}) => {
+  // const handleSignUp = () => {
+  //   if (window.myKnapsackData[isLogIn]===false){
+  //      const signInElement = document.getElementById("lonIn");
+  //      singnInElement.content ="DashBoard";
+  //      window.myKnapsackData[isLogIn] = true;
+  //      const signUpElement = document.getElementById("singUp");
+  //      singnInElement.content ="Sign Out";
+  //      singnInElement.Style.color = "red";
+  //      switchComponent( switchComponent(HomeComponent{component: "Home", mpros: {isLogIn: false, itemText: "Log In"  }})}
+  // })
+  //   }
+  // }
   return (
     
      <form className='SignUpForm'>
@@ -11,12 +24,15 @@ const SignUpForm = ({switchComponent}) => {
         <label>PassWord</label>
         <input type="password" id="signUpPassWord" name="signUpPassWord" />
         
-        <button type="submit" value="Submit">Sign Up</button>
+        <button type="submit" value="Submit"
+          onClick={( ) =>{
+          switchComponent(HomeComponent, {component: "Home", mpros: {isLogIn: true, sourceItemId: "Submit", itemText: "DashBoard"  }})}
+          } 
+        >Sign Up</button>
         <p>Already have a account<a href="#" id="signupLink" 
-        onClick={() => switchComponent({
-            component: "LogIn",
-            pros: {}
-         })} 
+        onClick={( ) =>{
+          switchComponent(LogInForm, {component: "LogIn", mpros: {isLogIn: false,  sourceItemId: "signupLink", itemText: "Log In" }})}
+          } 
         >Log In</a></p>
     </form> 
   );

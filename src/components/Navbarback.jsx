@@ -1,18 +1,5 @@
-import React from 'react';
-import LogInForm from './LoginForm';
-import SignUpForm from './SignUpForm';
-// import NavbarHome from './NavbarHome';
-// import ContentCards from './ContentCards';
-import HomeComponent from './HomeComponent';
-// import Navbar from './Navbar';
-// import LogInForm from './LoginForm';
-// import SignUpForm from './SignUpForm';
-import DashBoardForm from './DashBoardForm';
-import ViewDetails from "./ViewDetails"
-import CartForm from './CartForm';
-
+import React from 'react'
 import { useState } from 'react';
-// import HomeComponent from './HomeComponent';
 function Navbar({switchComponent, logInPros}) {
     // const [logInState, setLogInState] = useState("logOut");
  console.log(logInPros);
@@ -58,35 +45,33 @@ function Navbar({switchComponent, logInPros}) {
     //         });
     // } 
   return (
-     <nav className='topNav' id="topNav">
+     <nav className='topNav'>
       <ul className='menu-lists'>
-        <li  onClick={( ) =>{
-          switchComponent(HomeComponent,{component: "Home", mpros: { }})}
-         }
+        <li  onClick={() => switchComponent({
+            component: "Home",
+            pros: {}
+         })}
         >Home</li>
-        <li  onClick={( ) =>{
-          switchComponent(CartForm,{component: "Cart", mpros: { }})}
-        }
+        <li  onClick={() => switchComponent({
+            component: "Cart",
+            pros: {}
+         })}
         >Cart</li>
-         <li id="logIn" onClick={( ) =>{
-          switchComponent(LogInForm,{component: "LogIn", mpros: {isLogIn: false, sourceItemId: "logIn",itemText: "Log In"  }})}
-
-          }  >Log In</li>
-        {/* { window.myKnapsackData.isLogIn === false ? (
-          <li id="logIn" onClick={( ) =>{
-          switchComponent(LogInForm,{component: "LogIn", mpros: {isLogIn: false, sourceItemId: "logIn",itemText: "Log In"  }})}
-
-          }  >Log In</li>):(
-          <li id="dashBoard" onClick={( ) =>{
-          switchComponent(DashBoardForm, {component: "DashBoard", mpros: { isLogIn: false, sourceItemId:"dashBoard", itemText: "Log In" }})}
-
-          }  >DashBoard</li>
+        { window.myKnapsackData.isLogIn === false ? (
+          <li id="logIn" onClick={() => switchComponent({
+            component: "LogIn",
+            pros: {}
+         })}  >Log In</li>):(
+          <li id="logIn" onClick={() => switchComponent({
+            component: "DashBoard",
+            pros: {}
+         })} >DashBoard</li>
          ) 
-        } */}
-        <li onClick={( ) =>{
-          switchComponent(SignUpForm , {component: "SignUp", mpros: { }})}
-
-          } 
+        }
+        <li onClick={() => switchComponent({
+            component: "SignUp",
+            pros: {}
+         })}
         id="singUp">SignUp</li>
 
       </ul>

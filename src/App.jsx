@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import MainBoard from './components/MainBoard';
 function App() {
   if (typeof window.myKnapsackData === "undefined")
-     { window.myKnapsackData={isLogIn:false, cartItems:0};} 
+     { window.myKnapsackData={isLogIn:false, itemState:"logIn", cartItems:0};} 
   // console.log(window.myKnapsackData);
   return (
     <>
