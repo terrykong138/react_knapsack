@@ -23,16 +23,41 @@ const handleReplaceComponent = useCallback((newComponent, config) => {
     setCurrentComponent(() => newComponent);
     setComponentConfig(config);
     console.log("window.myKnapsackData.isLogIn", window.myKnapsackData.isLogIn,"config.mpros.sourceItemId",config,"component",config.component);
-      if (window.myKnapsackData.isLogIn===false && config.mpros.sourceItemId==="Submit" ){
-           const signInElement = document.getElementById("logIn");
-           signInElement.textContent ="DashBoard";
-           window.myKnapsackData[0] = true;
-           const signUpElement = document.getElementById("singUp");
+      if (config.mpros.sourceItemId==="Submit" ){
+          // const signUpElement = document.getElementById("singUp");
+         if (window.myKnapsackData.isLogIn===false ){
+            const logInElement = document.getElementById("logIn");
+            logInElement.textContent = "Dash Board";
+            window.myKnapsackData.isLogIn=true;
+            window.myKnapsackData.logInItemState="dashBoard";
 
-           signUpElement.textContent ="Sign Out";
-           signUpElement.style.color = "red";
+            const signUpElement = document.getElementById("signUp");
+             signUpElement.textContent = "Log Out";
+             signUpElement.style.color = "red";
+             window.myKnapsackData.signUpItemState = "logOut";
+
+         } else {
+           // const signUpElement = document.getElementById("singUp");
+            // signUpElement.textContent ="Sign Up";
+            // signUpElement.style.color = "white";
+            // window.myKnapsackData.isLogIn=false;
+         };
         
-      };
+       };
+        if (config.mpros.sourceItemId==="logOutBt" ){
+          if (window.myKnapsackData.isLogIn===true ){
+            const logInElement = document.getElementById("dashBoard");
+            logInElement.textContent = "Log In";
+            window.myKnapsackData.isLogIn=false;
+            window.myKnapsackData.logInItemState="logIn";
+
+            const signUpElement = document.getElementById("logOut");
+             signUpElement.textContent = "Sing Up";
+             signUpElement.style.color = "White";
+             window.myKnapsackData.signUpItemState = "signUp";
+        }
+      }
+     
   }, []);  
 const  formComponents = {
   Home: HomeComponent,

@@ -26,7 +26,7 @@ const SignUpForm = ({switchComponent}) => {
         
         <button type="submit" value="Submit"
           onClick={( ) =>{
-          switchComponent(HomeComponent, {component: "Home", mpros: {isLogIn: true, sourceItemId: "Submit", itemText: "DashBoard"  }})}
+          switchComponent(LogInForm, {component: "LogIn", mpros: {isLogIn: false, sourceItemId: "Submit", itemText: "Log In"  }})}
           } 
         >Sign Up</button>
         <p>Already have a account<a href="#" id="signupLink" 
