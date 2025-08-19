@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CarFormBlank = () => {
+const CartFormBlank = () => {
   return (
     <div>
         <h2>The cart is blank</h2>
     </div>
-  )
+  );
 }
 
-export default CarFormBlank
+export default CartFormBlank

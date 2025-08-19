@@ -1,6 +1,6 @@
 import phoAdvanturePro from "./src/assets/pho-advanture-pro-40l.jpeg";
 import phoUrbanCommuter from "./src/assets/pho-urban-commuter.jpeg"
-export const productsInfos= [
+export const productsInfos = [
     {id: 1,
      imageSrc: phoAdvanturePro,
      productType: "Hiking",
@@ -60,5 +60,22 @@ export const productsInfos= [
      keyFeatures: ["40L", "Ergonomic Straps", "Waterproof", "Multiple Compartments"],
      reviewsCount:445,
      price: 169.99    
-    },
+    }
+]
+export const dashBoardFootBoxData = [
+  {id: 1,
+  title: "Profile Settings",
+  papargraph: "Update your personal information and preferences",
+  buttonText: "Edit Profile"
+  },
+   {id: 2,
+  title: "Order History",
+  papargraph: "View all your past orders and download invoices",
+  buttonText: "View All Orders"
+  },
+   {id: 3,
+  title: "Wishlist",
+  papargraph: "Save items you want to purchase later",
+  buttonText: "View Whishlist"
+  }
 ]

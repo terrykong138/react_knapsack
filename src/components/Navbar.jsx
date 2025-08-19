@@ -68,12 +68,12 @@ function Navbar({switchComponent, logInPros}) {
         <li  onClick={( ) =>{
           switchComponent(CartForm,{component: "Cart", mpros: { }})}
         }
-        >Cart</li>
+        >Cart<sup id="cartSup" color='red'></sup></li>
 
         
            { window.myKnapsackData.logInItemState === "logIn" ? (
           <li id="logIn" onClick={( ) =>{
-          switchComponent(LogInForm, {component: "LogIn", mpros: {isLogIn: false, sourceItemId: "logIn",itemText: "Log In"  }})}
+          switchComponent(LogInForm, {component: "LogIn", mpros: {isLogIn: false, sourceItemId: "navLogIn",itemText: "Log In"  }})}
 
           }  >Log In</li>):(
           <li id="dashBoard" onClick={( ) =>{
@@ -84,7 +84,7 @@ function Navbar({switchComponent, logInPros}) {
         } 
            { window.myKnapsackData.signUpItemState === "signUp" ? (
           <li id="signUp" onClick={( ) =>{
-          switchComponent(SignUpForm ,{component: "signUp", mpros: {isLogIn: false, sourceItemId: "SignUp",itemText: "sign Up"  }})}
+          switchComponent(SignUpForm ,{component: "signUp", mpros: {isLogIn: false, sourceItemId: "navSignUp",itemText: "sign Up"  }})}
 
           }  >Sign Up</li>):(
           <li id="logOut" color='red' onClick={( ) =>{

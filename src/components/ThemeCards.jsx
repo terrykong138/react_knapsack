@@ -12,9 +12,11 @@ const ThemeCards = ({switchComponent, config}) => {
      <div>
      {themeProducts.map((productsInfoP) => (
         <ContentCard key={productsInfoP.id} 
+        idP={productsInfoP.id} 
         switchComponentEnd={switchComponent}
         imageSrcP={productsInfoP.imageSrc }
           isInStockP={productsInfoP.isInStock} 
+          productTitleP={productsInfoP.productTitle}
           keyFeaturesP={productsInfoP.keyFeatures}
           priceP={productsInfoP.price} 
           productDescriptionP={productsInfoP.productDescription} 

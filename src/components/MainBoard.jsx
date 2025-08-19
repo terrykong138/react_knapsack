@@ -22,26 +22,26 @@ const handleReplaceComponent = useCallback((newComponent, config) => {
    
     setCurrentComponent(() => newComponent);
     setComponentConfig(config);
-    console.log("window.myKnapsackData.isLogIn", window.myKnapsackData.isLogIn,"config.mpros.sourceItemId",config,"component",config.component);
-      if (config.mpros.sourceItemId==="Submit" ){
+    console.log("window.myKnapsackData.isLogIn", window.myKnapsackData.isLogIn,"config.mpros.sourceItemId",config.mpros.sourceItemId,"component",config.component);
+      if (config.mpros.sourceItemId==="signIn" ){
           // const signUpElement = document.getElementById("singUp");
-         if (window.myKnapsackData.isLogIn===false ){
-            const logInElement = document.getElementById("logIn");
-            logInElement.textContent = "Dash Board";
-            window.myKnapsackData.isLogIn=true;
-            window.myKnapsackData.logInItemState="dashBoard";
+        //  if (window.myKnapsackData.isLogIn===false ){
+            // const logInElement = document.getElementById("logIn");
+            // logInElement.textContent = "Dash Board";
+            // window.myKnapsackData.isLogIn=true;
+            // window.myKnapsackData.logInItemState="dashBoard";
 
-            const signUpElement = document.getElementById("signUp");
-             signUpElement.textContent = "Log Out";
-             signUpElement.style.color = "red";
-             window.myKnapsackData.signUpItemState = "logOut";
+            // const signUpElement = document.getElementById("signUp");
+            //  signUpElement.textContent = "Log Out";
+            //  signUpElement.style.color = "red";
+            //  window.myKnapsackData.signUpItemState = "logOut";
 
-         } else {
+        //  } else {
            // const signUpElement = document.getElementById("singUp");
             // signUpElement.textContent ="Sign Up";
             // signUpElement.style.color = "white";
             // window.myKnapsackData.isLogIn=false;
-         };
+        //  };
         
        };
         if (config.mpros.sourceItemId==="logOutBt" ){

@@ -6,6 +6,19 @@ function App() {
   if (typeof window.myKnapsackData === "undefined")
      { window.myKnapsackData={isLogIn:false, logInItemState:"logIn", signUpItemState:"signUp",cartItems:0};} 
   // console.log(window.myKnapsackData);
+  if (typeof window.myDataOrders === "undefined"){
+      window.myDataOrders=[];
+  };
+  if (typeof window.myDataOrders === "undefined"){
+      window.myDataOrders=[{}];
+  };
+  if (typeof window.myDataNewOrderItems === "undefined"){
+      window.myDataNewOrderItems = [];
+      
+    };
+  
+
+  
   return (
     <>
    

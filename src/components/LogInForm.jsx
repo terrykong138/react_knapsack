@@ -2,12 +2,22 @@ import React from 'react';
 import SignUpForm from './SignUpForm';
 import HomeComponent from './HomeComponent';
 const LogInForm = ({switchComponent}) => {
-const handleReplace = () => {
+const signInHandleReplace = () => {
     // Multiple parameters: new component and config with multiple props
-    replaceComponent(LogInForm, {component:home,
-      
-    })
-  };
+     const logInElement = document.getElementById("logIn");
+            logInElement.textContent = "Dash Board";
+            window.myKnapsackData.isLogIn=true;
+            window.myKnapsackData.logInItemState="dashBoard";
+
+            const signUpElement = document.getElementById("signUp");
+             signUpElement.textContent = "Log Out";
+             signUpElement.style.color = "red";
+             window.myKnapsackData.signUpItemState = "logOut";
+    switchComponent(HomeComponent, {component: "Home", mpros: {IsLogIn: true, sourceItemId:"signIn", itemText:"DashBoard"}})
+  }
+
+          
+  
   return (
     <form className='logInForm'>
         <h3>Welcom Back</h3>
@@ -24,11 +34,11 @@ const handleReplace = () => {
 
           } 
           >Abort</button>
-          <button type="submit" value="Submit" 
-          onClick={( ) =>{
-          switchComponent(HomeComponent , {component: "Home", mpros: {IsLogIn: True, itemText:"DashBoard"}})}
+          <button  onClick={signInHandleReplace}
+          // onClick={( ) =>{
+          // switchComponent(HomeComponent, {component: "Home", mpros: {IsLogIn: True, sourceItemId:"signIn", itemText:"DashBoard"}})}
 
-          } 
+          // } 
         //   onClick={() => switchComponent({
         //     component: "Home",
         //     pros: {IsLogIn: true, itemText:"DashBoard" }

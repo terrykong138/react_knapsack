@@ -9,8 +9,10 @@ const ContentCards = ({ switchComponent ,config}) => {
      {productsInfos.map((productsInfoP) => (
          
         <ContentCard  key={productsInfoP.id} 
-        imageSrcP={productsInfoP.imageSrc }
-          isInStockP={productsInfoP.isInStock} 
+         idP={productsInfoP.id} 
+         imageSrcP={productsInfoP.imageSrc}
+          isInStockP={productsInfoP.isInStock}  
+          productTitleP={productsInfoP.productTitle}
           keyFeaturesP={productsInfoP.keyFeatures}
           priceP={productsInfoP.price} 
           productDescriptionP={productsInfoP.productDescription} 

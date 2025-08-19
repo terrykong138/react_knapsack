@@ -1,12 +1,70 @@
 import React from 'react';
  import { useState,useCallback } from 'react';
+ import {changeCartSup , blankCartSup} from  './ContentCard';
 const ViewDetails = ({switchComponent, config}) => {
 //   {imageSrcV, productTypeV, isInStockV, productTitleV, reviewsCountV,productDescriptionV, keyFeaturesV, priceV }
-   console.log(config,"ViewDetails pros", switchComponent,"VDswitchComponent" );
-const handleAddItems = () => {
-    
-}
+    console.log(config,"ViewDetails pros" );
+    const productId = config.mpros.id;
+    console.log(productId,"ViewDetails config.mpros.id");
 
+    const changeItemCount =(number) =>{
+        const itemElement = document.getElementById("buyCount");
+        itemElement.textContent = number.toString();
+            
+    }
+    const getItemCount = () =>{
+        const itemElement = document.getElementById("buyCount");
+        if (itemElement !== undefined ) {
+            if (itemElement.textContent !== "")
+            return Number(itemElement.textContent);
+        }  else return 0;
+    
+    }
+   const handleAddItems = () => {
+
+                let originItemCount = getItemCount()+1;
+                changeItemCount(originItemCount);
+
+                        
+                    //     myDataNewOrderItems.push(config.mpros.id); 
+                    // console.log("window.myDataNewOrderItems", window.myDataNewOrderItems);
+                    //  changeCartSup(window.myDataNewOrderItems.length);
+    
+                }
+
+ const handleMinusItems = () => {
+
+         let originItemCount = getItemCount();
+         if (originItemCount > 0) {
+            originItemCount= originItemCount-1;
+             changeItemCount(originItemCount);
+         }
+  
+                    // const index = window.myDataNewOrderItems.indexOf(config.mpros.id);
+                    // const productId = config.mpros.id;
+                    // if (window.myDataNewOrderItems.filter(item => item === productId).length !==0) {
+                    // const index = window.myDataNewOrderItems.indexOf(config.mpros.id);
+                    //  if (index > -1) {
+                    //   window.myDataNewOrderItems.splice(index,1)
+                    //  if ( window.myDataNewOrderItems.length > 0) {
+                    //         changeCartSup(window.myDataNewOrderItems.length);
+                    //      } else blankCartSup();
+                    //      }         
+                    //      }
+                    //     }  
+                         }
+
+const handleAddtoCart = (id) => {
+    let itemCount =  getItemCount();
+    if (itemCount > 0 ) {
+        for(let index= 0; index < itemCount;index ++) {
+           window.myDataNewOrderItems.push(config.mpros.id);  
+        }
+         changeCartSup(window.myDataNewOrderItems.length);   
+
+    }
+
+}
 return (
       <div className='card'>
         <button><i className="fa-solid fa-arrow-left"></i>Back to Products</button>
@@ -39,12 +97,13 @@ return (
                 </div>
             </div> 
             <div>
-                <h3>Quantity:<a>-</a><a id='buyCount'>1</a><a>+</a></h3>
+                <h3>Quantity:<button className='btn-midSize' onClick={ handleMinusItems}>-</button>
+                <a id='buyCount'>0</a><button className='btn-midSize' onClick={ handleAddItems}>+</button></h3>
             </div>
             
         </div>
         <div>
-            <button id="addToCart"><i className="fa-regular fa-cart-shopping"></i>Add to Cart</button>
+            <button id="addToCart" onClick={handleAddtoCart}><i className="fa-regular fa-cart-shopping"></i>Add to Cart</button>
         </div>
         <div className='box viewDetailsFoot'>
             <div className='box favorable'>
