@@ -1,7 +1,9 @@
 import React , { useRef } from 'react'
 import { getOrderTotalItemCount ,changeCartSup} from './ContentCard';
 const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, themeP, priceP, itemCountP,itemsSumP}) => {
-const updateNewOrderItemCount = (productId,countP) => {
+
+
+    const updateNewOrderItemCount = (productId,countP) => {
    
   
    const productsSelect = (product) => {
@@ -31,7 +33,7 @@ const updateNewOrderItemCount = (productId,countP) => {
 
     orderTax = orderSum * taxRate;
     orderTotal = orderSum - orderTax ;
-    return [orderItemCount,orderSum,orderTax,orderTotal];
+    return [orderCout ,orderSum,orderTax,orderTotal];
     }
 
        const getItemCount = (idStrin) =>{
@@ -59,11 +61,48 @@ const updateNewOrderItemCount = (productId,countP) => {
             changeCartSup(totalItemCount);
             const taxRate=0.18;
             let newConfigArr = updateData();
-            handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:[3]})
+            handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
 
 
     }
+
 }
+const pulsOrderItemCount =() =>{
+            newItemCount +=1;
+            newItemsSum  = priceP *  newItemCount;
+            newItemCount=updateNewOrderItemCount(itemId, newItemCount);
+            totalItemCount = getOrderTotalItemCount();
+            changeCartSup(totalItemCount);
+            const taxRate=0.18;
+            let newConfigArr = updateData();
+            handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
+
+
+}
+
+// ==============handle remove============
+const [isVisible, setIsVisible] = React.useState(true);
+const handleRemove = () => {
+    const productsSelect = (product) => {
+    return product.id === itemId;
+    }
+    let  workOrderItem = window.myDataNewOrderdetails.find(productsSelect);
+    if (workOrderItem !== undefined) {
+        let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
+        window.myDataNewOrderdetails.splice(index,1);
+    
+         totalItemCount = getOrderTotalItemCount();
+            changeCartSup(totalItemCount);
+            const taxRate=0.18;
+            let newConfigArr = updateData();
+            handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
+  
+    }
+    
+    setIsVisible(false); // "Remove" the component by not rendering
+  };
+
+if (!isVisible) return null;
   return (
     <div className='card flex-row-between'>
         <div className="box flex-row">
@@ -79,11 +118,11 @@ const updateNewOrderItemCount = (productId,countP) => {
             <div className='box flex-row'>
                 <button onClick={minusOrderItemCount}>-</button>
                 <a>{newItemCount}</a>
-                <button>+</button>
+                <button onClick={pulsOrderItemCount}>+</button>
             </div>
             <div className='box flex-column'>
                 <h3>${newItemsSum}</h3>
-                <button className='btn-small'>Remove</button>
+                <button className='btn-small' onClick={handleRemove}>Remove</button>
             </div>
             
         </div>

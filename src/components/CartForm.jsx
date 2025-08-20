@@ -1,10 +1,11 @@
 import React from 'react';
 // import App from '../App';
+import DashBoardForm from './DashBoardForm';
 import CartItem from './CartItem';
-import { useState } from 'react';
+import { useState , useCallback } from 'react';
 import {getOrderTotalItemCount} from './ContentCard';
 // ==================================
-const CartForm = (switchComponent) => {
+const CartForm = ({switchComponent}) => {
     const taxRate=0.18;
 var orderSum = 0;
 var orderItemCount = 0;
@@ -20,17 +21,42 @@ function myCountCal(item) {
 
    orderTax = orderSum * taxRate;
     orderTotal = orderSum - orderTax ;
-    // return [orderCount,orderSum,orderTax,orderTotal]
+    return [orderCount,orderSum,orderTax,orderTotal]
 }
-updateData();
+const configdata = updateData();
   // const [CurrentComponent, setCurrentComponent] = useState((swith) => ThemeCards );
-const [itemConfig, setItemConfig] = useState({isChange:false, orderCoutP:orderCount, orderSumP: orderSum,orderTaxP:orderTax, OrderTotalP:orderTotal });
+const [itemConfig, setItemConfig] = useState({isChange:false, orderCoutP:configdata[0], orderSumP: configdata[1],orderTaxP:configdata[2], OrderTotalP:configdata[3]});
 
 const handleItemConfig =(config) =>{  
   setItemConfig(config);
 }
-// ==============================
+// =============handle Check Out=================
 
+const [children, setChildren] = useState([]);
+// const DashBoardForm = () => {
+ 
+ 
+
+ 
+  // Callback to trigger appending a child in ParentComponent
+  const handleCheckOut =() =>{
+  const currentDate = new Date();
+  let currentDateStr = currentDate.toDateString();  
+  function generateRandomId() {
+  return Math.floor(Math.random() * 1000000000); // Generates a number between 0 and 999999
+}
+const id = generateRandomId();
+let workOrder ={};
+    workOrder.id=id;
+    // workOrder.customer= window.currentUser;
+    workOrder.date=currentDate;
+    workOrder.Total=orderTotal;
+    workOrder.ordeDetails= window.myDataNewOrderdetails;
+window.myDataOrders.push(workOrder);
+console.log("window.myDataOrders",window.myDataOrders);
+switchComponent (DashBoardForm, {component: "DashBoard", mpros: { isLogIn: false, sourceItemId:"dashBoard", itemText: "Dash Board" }})
+                 
+  }
 // ==========================================
   return (
     <div className='container cart'>
@@ -57,7 +83,7 @@ const handleItemConfig =(config) =>{
               <div className='card orderSum' id="cardOrderSum">
                 <h3>Order Summary</h3>
                 <a>SubTotal({itemConfig.orderCoutP} Items)</a>
-                <a>#{itemConfig.orderSumP}</a>
+                <a>${itemConfig.orderSumP}</a>
                 <a>Shipping</a>
                 <a>Free</a>
                 <a>Tax</a>
@@ -68,8 +94,7 @@ const handleItemConfig =(config) =>{
                   <a>Total</a>
                 <a>${itemConfig.OrderTotalP}</a>
                 </div>
-                <button>Proceed To Checkout</button>
-
+                <button onClick={handleCheckOut}>Proceed To Check OUt </button>
               </div>
           </div>
      </div>

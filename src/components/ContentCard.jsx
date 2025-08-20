@@ -9,8 +9,11 @@ import {productsInfos} from "../../data";
 // ==============================================
 const changeCartSup = (number) => {
      const navCartSup = document.getElementById("cartSup");
-     console.log(navCartSup,"cartSup",number,"number");
-     navCartSup.textContent=number.toString();
+    //  console.log(navCartSup,"cartSup",number,"number");
+    if (number !== 0) {
+      navCartSup.textContent=number.toString();
+    }else navCartSup.textContent="";
+     
      navCartSup.style.color="red";
 }
 
