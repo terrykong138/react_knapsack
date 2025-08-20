@@ -2,19 +2,80 @@ import React from 'react';
  import { useState,useCallback } from 'react';
 import ViewDetails from './ViewDetails';
 import Navbar from './Navbar';
+import {productsInfos} from "../../data";
+// ============================================
+
+
+// ==============================================
 const changeCartSup = (number) => {
      const navCartSup = document.getElementById("cartSup");
      console.log(navCartSup,"cartSup",number,"number");
      navCartSup.textContent=number.toString();
      navCartSup.style.color="red";
-    
-
 }
+
 const blankCartSup = () => {
     const navCartSup = document.getElementById("cartSup")
      navCartSup.textContent="";
     
 }
+
+const appendNewOrderItem = (productId, workProductInfosP, productCount) => {
+       let   newOrderItem = {};
+          newOrderItem.id =productId;
+           newOrderItem.imageSrc=workProductInfosP.imageSrc;
+          newOrderItem.productTitle =workProductInfosP.productTitle;
+          newOrderItem.theme = workProductInfosP.productType;
+            newOrderItem.price = workProductInfosP.price;
+           newOrderItem.count = productCount;
+           newOrderItem.sum = workProductInfosP.price * productCount;
+           window.myDataNewOrderdetails.push(newOrderItem);
+           console.log(window.myDataNewOrderdetails)
+
+
+}
+// Suppose window.myDataNewOrderdetails.length  > 0
+const updateNewOrderItemCount = (productId,countP) => {
+   
+  
+   const productsSelect = (product) => {
+    return product.id === productId;
+    }
+    let  workOrderItem = window.myDataNewOrderdetails.find(productsSelect);
+    if (workOrderItem !== undefined) {
+        let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
+        window.myDataNewOrderdetails[index].count = window.myDataNewOrderdetails[index].count+countP;
+        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].sum +window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        return  window.myDataNewOrderdetails[index].count;
+      } else  return -1;
+    }
+  const getNewOrderItemCount = (productId) => {
+     if (window.myDataNewOrderdetails.length  > 0){
+       const productsSelect = (product) => {
+    return product.id === productId;
+    }
+     let workOrderItem = window.myDataNewOrderdetails.find(productsSelect);
+     console.log("workOrderItem ", workOrderItem  );
+     if (workOrderItem !== undefined) {
+      return workOrderItem.count;
+     } else return 0;
+
+  } else return 0;
+}
+const getOrderTotalItemCount = () => {
+  if (window.myDataNewOrderdetails.length >0) {
+    let orderCount = 0;
+    function myCountCal(item) {
+     orderCount += item.count;
+    }
+    window.myDataNewOrderdetails.forEach(myCountCal);
+    return orderCount ; 
+  } else return 0 ;
+
+  }
+
+
+
 const ContentCard = ( {switchComponentEnd, configEnd, idP, imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP, keyFeaturesP, priceP } ) => {
    console.log({productTitleP},"productTitleP", productTypeP," productTypeP" ,"idP",idP);
 //    const handleReplaceC = () =>{
@@ -30,12 +91,29 @@ const ContentCard = ( {switchComponentEnd, configEnd, idP, imageSrcP, productTyp
 //    }
 
 const handleAddToCart = () => {
- console.log("window.myDataNewOrderItemsPre",window.myDataNewOrderItems);
-  window.myDataNewOrderItems.push({idP}); 
-  console.log("window.myDataNewOrderItems",window.myDataNewOrderItems);
-  changeCartSup(window.myDataNewOrderItems.length);
-  
+//  console.log("window.myDataNewOrderdetails",window.myDataNewOrderdetails);
+  // window.myDataNewOrderItems.push({idP}); 
+  const productsSelect = (product) => {
+    return product.id === idP;
+    }
+  let workProductInfos=productsInfos.find(productsSelect);
+     
+         
+   if (window.myDataNewOrderdetails.length  > 0){
+     if (updateNewOrderItemCount(idP,1) === -1) {
+         appendNewOrderItem  (idP, workProductInfos, 1);
+      }
     
+} else {
+    appendNewOrderItem (idP, workProductInfos, 1);
+     
+  }
+  console.log("window.myDataNewOrderItems",window.myDataNewOrderItems);
+  let itemCount = getOrderTotalItemCount();
+  if (itemCount > 0) {
+    changeCartSup(itemCount);
+  } ;  
+  console.log("window.myDataNewOrderdetails",window.myDataNewOrderdetails); 
 }
     return (
     <div className='card'>
@@ -78,4 +156,4 @@ const handleAddToCart = () => {
 }
 
 export default ContentCard;
-export {changeCartSup ,blankCartSup} ;
+export {changeCartSup ,blankCartSup, updateNewOrderItemCount, getNewOrderItemCount } ;

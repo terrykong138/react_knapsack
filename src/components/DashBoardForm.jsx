@@ -10,7 +10,7 @@ const DashBoardForm = () => {
               <h4>Account Info</h4>
               <i></i>
               </div> 
-              <h2>{userName}</h2>
+              <h2>jht</h2>
               <h4>Member since <data value={signUpDate}></data></h4>
          </div>
       

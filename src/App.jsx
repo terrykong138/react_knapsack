@@ -16,6 +16,14 @@ function App() {
       window.myDataNewOrderItems = [];
       
     };
+  if (typeof  window.myDataNewOrderdetails  === "undefined"){
+      window.myDataNewOrderdetails = [];
+      
+    };
+    if (typeof window.myDataUserInfo === "undefined"){
+      window.myDataUserInfo ={name:"",signUpDate:""};
+      
+    };
   
 
   
