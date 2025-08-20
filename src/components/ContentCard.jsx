@@ -45,7 +45,7 @@ const updateNewOrderItemCount = (productId,countP) => {
     if (workOrderItem !== undefined) {
         let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
         window.myDataNewOrderdetails[index].count = window.myDataNewOrderdetails[index].count+countP;
-        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].sum +window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
         return  window.myDataNewOrderdetails[index].count;
       } else  return -1;
     }
@@ -156,4 +156,4 @@ const handleAddToCart = () => {
 }
 
 export default ContentCard;
-export {changeCartSup ,blankCartSup, updateNewOrderItemCount, getNewOrderItemCount } ;
+export {changeCartSup ,blankCartSup, updateNewOrderItemCount, getNewOrderItemCount, getOrderTotalItemCount } ;

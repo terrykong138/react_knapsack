@@ -1,6 +1,69 @@
-import React from 'react'
+import React , { useRef } from 'react'
+import { getOrderTotalItemCount ,changeCartSup} from './ContentCard';
+const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, themeP, priceP, itemCountP,itemsSumP}) => {
+const updateNewOrderItemCount = (productId,countP) => {
+   
+  
+   const productsSelect = (product) => {
+    return product.id === productId;
+    }
+    let  workOrderItem = window.myDataNewOrderdetails.find(productsSelect);
+    if (workOrderItem !== undefined) {
+        let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
+        window.myDataNewOrderdetails[index].count =countP;
+        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        return  window.myDataNewOrderdetails[index].count;
+      } else  return -1;
+    }
+    const updateData = () =>{
+    let taxRate = 0.18;
+     let orderSum = 0;
+    let orderItemCount = 0;
+    let orderTax = 0;
+    let orderTotal = orderSum - orderSum * taxRate ;
+    let orderCout = 0;
 
-const CartItem = ({imageSourceP,  itemTitleP, themeP, priceP, itemCountP,itemsSumP}) => {
+    function myCountCal(item) {
+        orderCout += item.count;
+        orderSum += item.sum;
+    }
+    window.myDataNewOrderdetails.forEach(myCountCal);
+
+    orderTax = orderSum * taxRate;
+    orderTotal = orderSum - orderTax ;
+    return [orderItemCount,orderSum,orderTax,orderTotal];
+    }
+
+       const getItemCount = (idStrin) =>{
+        const itemElement = document.getElementById(idString);
+        if (itemElement !== undefined ) {
+            if (itemElement.textContent !== "")
+            return Number(itemElement.textContent);
+        }  else return 1;
+    
+    }
+     const changeItemCount =( idString, number) =>{
+        const itemElement = document.getElementById(idString);
+        itemElement.textContent = number.toString();
+            
+    }
+ let newItemCount = itemCountP;
+ let newItemsSum = itemsSumP;
+ let totalItemCount = getOrderTotalItemCount();
+ const minusOrderItemCount =() => {
+        if (newItemCount >1) {
+            newItemCount -=1;
+            newItemsSum  = priceP *  newItemCount;
+            newItemCount=updateNewOrderItemCount(itemId, newItemCount);
+            totalItemCount = getOrderTotalItemCount();
+            changeCartSup(totalItemCount);
+            const taxRate=0.18;
+            let newConfigArr = updateData();
+            handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:[3]})
+
+
+    }
+}
   return (
     <div className='card flex-row-between'>
         <div className="box flex-row">
@@ -14,12 +77,12 @@ const CartItem = ({imageSourceP,  itemTitleP, themeP, priceP, itemCountP,itemsSu
         </div>
         <div className='box flex-row'>
             <div className='box flex-row'>
-                <button>-</button>
-                <a>{itemCountP}</a>
+                <button onClick={minusOrderItemCount}>-</button>
+                <a>{newItemCount}</a>
                 <button>+</button>
             </div>
             <div className='box flex-column'>
-                <h3>${itemsSumP}</h3>
+                <h3>${newItemsSum}</h3>
                 <button className='btn-small'>Remove</button>
             </div>
             
