@@ -5,7 +5,7 @@ import ContentCard from './ContentCard';
 const ContentCards = ({ switchComponent ,config}) => {
   console.log(switchComponent,"contentCards", config, "configCD");
   return (
-    <div>
+    <div className='cards-content'>
      {productsInfos.map((productsInfoP) => (
          
         <ContentCard  key={productsInfoP.id} 

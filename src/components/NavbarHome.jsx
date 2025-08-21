@@ -8,7 +8,7 @@ function NavbarHome({switchComponent}) {
 //       switchComponent(ThemeCards,{component: "",mpros: { }})
 //    }   
   return (
-     <nav className='topNav'>
+     <nav className='HomeNav'>
       <ul className='menu-lists'>
         <li onClick={( ) =>{
             switchComponent(ContentCards,{component: "All", mpros: { }})}

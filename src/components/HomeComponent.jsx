@@ -36,7 +36,7 @@ const [componentConfig, setComponentConfig] = useState({component: "All", mpros:
   // =================================
  const SelectedComponent = formComponents[componentConfig.component];
   return (
-    <div>
+    <div className='home-container'>
       <NavbarHome   switchComponent={handleReplaceComponent} />
        <CurrentComponent switchComponent={handleReplaceComponent} config={componentConfig} /> 
 
