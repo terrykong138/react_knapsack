@@ -8,12 +8,12 @@ const DashBoardForm = ({ switchComponent, pros}) => {
 
   const currentDate = new Date();
   const dateString=currentDate.toDateString();
-  let orderCount= window.myDataOrders.length;
+  let orderCount= window.myDataTemOrders.length;
   let totalSpent=0;
   function myCountCal(item) {
         totalSpent += item.Total;
     }
-  window.myDataOrders.forEach(myCountCal);
+  window.myDataTemOrders.forEach(myCountCal);
 
   return (
     <div className='container dashBoar'>
@@ -45,7 +45,7 @@ const DashBoardForm = ({ switchComponent, pros}) => {
            </div>     
       </div>    
       <div className='cards flex' id="caedsRecentOrders">  
-           {window.myDataOrders.map((order) =>(
+           {window.myDataTemOrders.map((order) =>(
             <DashBoardOrderItem key={order.id}  
              orderId={order.id}
              orderDate={order.date.toString()}

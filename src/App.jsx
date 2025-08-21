@@ -13,6 +13,9 @@ function App() {
   if (typeof window.myDataOrders === "undefined"){
       window.myDataOrders=[];
   };
+  if (typeof window.myDataTemOrders === "undefined"){
+      window.myDataTemOrders=[];
+  };
   
   if (typeof window.myDataNewOrderItems === "undefined"){
       window.myDataNewOrderItems = [];

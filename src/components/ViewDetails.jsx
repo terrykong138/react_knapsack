@@ -1,6 +1,7 @@
 import React from 'react';
  import { useState,useCallback } from 'react';
- import {changeCartSup , blankCartSup} from  './ContentCard';
+ import {changeCartSup , blankCartSup, getOrderTotalItemCount, updateNewOrderItemCount,appendNewOrderItem } from  './ContentCard';
+import {productsInfos} from "../../data";
 const ViewDetails = ({switchComponent, config}) => {
 //   {imageSrcV, productTypeV, isInStockV, productTitleV, reviewsCountV,productDescriptionV, keyFeaturesV, priceV }
     console.log(config,"ViewDetails pros" );
@@ -8,8 +9,8 @@ const ViewDetails = ({switchComponent, config}) => {
     console.log(productId,"ViewDetails config.mpros.id");
 
     const changeItemCount =(number) =>{
-        const itemElement = document.getElementById("buyCount");
-        itemElement.textContent = number.toString();
+    const itemElement = document.getElementById("buyCount");
+    itemElement.textContent = number.toString();
             
     }
     const getItemCount = () =>{
@@ -21,15 +22,8 @@ const ViewDetails = ({switchComponent, config}) => {
     
     }
    const handleAddItems = () => {
-
                 let originItemCount = getItemCount()+1;
                 changeItemCount(originItemCount);
-
-                        
-                    //     myDataNewOrderItems.push(config.mpros.id); 
-                    // console.log("window.myDataNewOrderItems", window.myDataNewOrderItems);
-                    //  changeCartSup(window.myDataNewOrderItems.length);
-    
                 }
 
  const handleMinusItems = () => {
@@ -39,32 +33,30 @@ const ViewDetails = ({switchComponent, config}) => {
             originItemCount= originItemCount-1;
              changeItemCount(originItemCount);
          }
-  
-                    // const index = window.myDataNewOrderItems.indexOf(config.mpros.id);
-                    // const productId = config.mpros.id;
-                    // if (window.myDataNewOrderItems.filter(item => item === productId).length !==0) {
-                    // const index = window.myDataNewOrderItems.indexOf(config.mpros.id);
-                    //  if (index > -1) {
-                    //   window.myDataNewOrderItems.splice(index,1)
-                    //  if ( window.myDataNewOrderItems.length > 0) {
-                    //         changeCartSup(window.myDataNewOrderItems.length);
-                    //      } else blankCartSup();
-                    //      }         
-                    //      }
-                    //     }  
-                         }
+ }
 
-const handleAddtoCart = (id) => {
+const handleAddtoCart = () => {
     let itemCount =  getItemCount();
+    const productsSelect = (product) => {
+            return product.id === productId;
+            }
+    const workProductInfos = productsInfos.find(productsSelect);
     if (itemCount > 0 ) {
-        for(let index= 0; index < itemCount;index ++) {
-           window.myDataNewOrderItems.push(config.mpros.id);  
-        }
-         changeCartSup(window.myDataNewOrderItems.length);   
-
-    }
-
+      if (window.myDataNewOrderdetails.length  > 0) {
+        let ItemTotalCount = updateNewOrderItemCount(productId,itemCount);
+        if ( ItemTotalCount !== -1) {
+           changeCartSup(ItemTotalCount ); 
+        }else appendNewOrderItem  (productId, workProductInfos, itemCount);
+       } else  appendNewOrderItem  (productId, workProductInfos, itemCount);
+    };
+  console.log("window.myDataNewOrderItems",window.myDataNewOrderItems);
+  let workItemCount = getOrderTotalItemCount();
+  if (workItemCount > 0) {
+    changeCartSup(workItemCount);
+   } ;  
+  console.log("window.myDataNewOrderdetails",window.myDataNewOrderdetails); 
 }
+
 return (
       <div className='card'>
         <button><i className="fa-solid fa-arrow-left"></i>Back to Products</button>

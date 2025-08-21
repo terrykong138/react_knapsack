@@ -78,7 +78,7 @@ const getOrderTotalItemCount = () => {
   }
 
 
-
+// ====================================================
 const ContentCard = ( {switchComponentEnd, configEnd, idP, imageSrcP, productTypeP, isInStockP, productTitleP, productDescriptionP, reviewsCountP, keyFeaturesP, priceP } ) => {
    console.log({productTitleP},"productTitleP", productTypeP," productTypeP" ,"idP",idP);
 //    const handleReplaceC = () =>{
@@ -159,4 +159,4 @@ const handleAddToCart = () => {
 }
 
 export default ContentCard;
-export {changeCartSup ,blankCartSup, updateNewOrderItemCount, getNewOrderItemCount, getOrderTotalItemCount } ;
+export {changeCartSup ,blankCartSup, updateNewOrderItemCount, getNewOrderItemCount, getOrderTotalItemCount, appendNewOrderItem  } ;

@@ -2,8 +2,9 @@ import React from 'react';
 // import App from '../App';
 import DashBoardForm from './DashBoardForm';
 import CartItem from './CartItem';
+import LogInForm from './LoginForm';
 import { useState , useCallback } from 'react';
-import {getOrderTotalItemCount} from './ContentCard';
+import {blankCartSup, getOrderTotalItemCount} from './ContentCard';
 // ==================================
 const CartForm = ({switchComponent}) => {
     const taxRate=0.18;
@@ -31,15 +32,17 @@ const handleItemConfig =(config) =>{
   setItemConfig(config);
 }
 // =============handle Check Out=================
+const clearWorkPlace = () =>{
+const transtToOrders =(item) => {
+    window.myDataOrders.push(item)
 
-const [children, setChildren] = useState([]);
-// const DashBoardForm = () => {
- 
- 
-
- 
-  // Callback to trigger appending a child in ParentComponent
-  const handleCheckOut =() =>{
+  }
+ window.myDataTemOrders.forEach(transtToOrders);
+  window.myDataTemOrders = [];
+  window.myDataNewOrderdetails = [];
+  blankCartSup();
+}
+const handleCheckOut =() =>{
   const currentDate = new Date();
   let currentDateStr = currentDate.toDateString();  
   function generateRandomId() {
@@ -52,11 +55,16 @@ let workOrder ={};
     workOrder.date=currentDate;
     workOrder.Total=orderTotal;
     workOrder.ordeDetails= window.myDataNewOrderdetails;
-window.myDataOrders.push(workOrder);
-console.log("window.myDataOrders",window.myDataOrders);
-switchComponent (DashBoardForm, {component: "DashBoard", mpros: { isLogIn: false, sourceItemId:"dashBoard", itemText: "Dash Board" }})
-                 
-  }
+window.myDataTemOrders.push(workOrder);
+console.log("window.myDataOrders",window.window.myDataTemOrders);
+if (window.myKnapsackData.isLogIn ===false) {
+   switchComponent(LogInForm, {component: "LogIn", mpros: {isLogIn: false, sourceItemId: "navLogIn",itemText: "Log In"  }});
+
+} else {
+  switchComponent (DashBoardForm, {component: "DashBoard", mpros: { isLogIn: false, sourceItemId:"dashBoard", itemText: "Dash Board" }});                 
+  const myTimeout = setTimeout(clearWorkPlace, 2000);
+
+}}
 // ==========================================
   return (
     <div className='container cart'>
