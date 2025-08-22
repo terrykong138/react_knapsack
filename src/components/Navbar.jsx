@@ -60,6 +60,7 @@ function Navbar({switchComponent, logInPros}) {
     // } 
   return (
      <nav className='topNav' id="topNav">
+      <h2 className='topNav-title'>KnapsackShop</h2>
       <ul className='menu-lists'>
         <li  onClick={( ) =>{
           switchComponent(HomeComponent,{component: "Home", mpros: { }})}

@@ -59,11 +59,11 @@ const handleAddtoCart = () => {
 
 return (
       <div className='card'>
-        <button><i className="fa-solid fa-arrow-left"></i>Back to Products</button>
+        {/* <button><i className="fa-solid fa-arrow-left"></i>Back to Products</button> */}
         <div className='box-image'>
             <img src={config.mpros.imageSrc} alt={config.mpros.productTitle} />
-            <p>{config.mpros.productType}</p>
-            <p>{config.mpros.isInStock}</p>
+            <p className='p-productType'>{config.mpros.productType}</p>
+            <p className='p-isInStock'>{config.mpros.isInStock}</p>
         </div>
         <div className='box viewDetailsInfo'>
             <h3>{config.mpros.productTitle}</h3>

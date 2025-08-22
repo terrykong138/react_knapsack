@@ -122,11 +122,11 @@ const handleAddToCart = () => {
     <div className='card'>
         <div className='box-image'>
             <img src={imageSrcP} alt={productTitleP} />
-            <p>{productTypeP}</p>
-            {isInStockP === true ? (<p>In Stock</p>):(<p>Out Of Stock</p>)} 
+            <p className='p-productType'>{productTypeP}</p>
+            {isInStockP === true ? (<p className='p-isInStock'>In Stock</p>):(<p className='p-isInStock'>Out Of Stock</p>)} 
         </div>
         <div className='box-info'>
-            <h3>{productTitleP}</h3>
+            <h4>{productTitleP}</h4>
             <p>{productDescriptionP}</p>
             <p className='appraise'>
                 <i className="fa-solid fa-star"></i>
@@ -136,7 +136,7 @@ const handleAddToCart = () => {
             </p>
             <p>{keyFeaturesP[0]} Capacity</p>
             <p>{keyFeaturesP[1]}</p>
-            <h2>${priceP}</h2> 
+            <h3>${priceP}</h3> 
         </div>
         <div>
             {/* +++++++++++++++++= */}

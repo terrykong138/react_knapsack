@@ -104,24 +104,23 @@ const handleRemove = () => {
 
 if (!isVisible) return null;
   return (
-    <div className='card flex-row-between'>
-        <div className="box flex-row">
-            <img src={imageSourceP} alt={itemTitleP}></img>
-            <div className="box flex-column">
-                <h3>{itemTitleP}</h3>
-                <h4>{themeP}</h4>
-                <h3>${priceP}</h3>
+    <div className='cardflex-row-between'>
+        <div className="box flex-row cart-item">
+            <img className='cartItemImage' src={imageSourceP} alt={itemTitleP}></img>
+            <div className="box flex-column cart-item-theme">
+                <h5>{itemTitleP}</h5>
+                <h5>{themeP}</h5>
+                <h5>${priceP}</h5>
             </div>
-
         </div>
         <div className='box flex-row'>
-            <div className='box flex-row'>
+            <div className='box flex-row cartItemButtons' >
                 <button onClick={minusOrderItemCount}>-</button>
                 <a>{newItemCount}</a>
                 <button onClick={pulsOrderItemCount}>+</button>
             </div>
-            <div className='box flex-column'>
-                <h3>${newItemsSum}</h3>
+            <div className='box-flex-column-cartItemSum'>
+                <h5>${newItemsSum}</h5>
                 <button className='btn-small' onClick={handleRemove}>Remove</button>
             </div>
             

@@ -9,7 +9,7 @@ const ThemeCards = ({switchComponent, config}) => {
 }
     const themeProducts = productsInfos.filter(productsSelect);
   return (
-     <div>
+     <div className='cards-grid'>
      {themeProducts.map((productsInfoP) => (
         <ContentCard key={productsInfoP.id} 
         idP={productsInfoP.id} 

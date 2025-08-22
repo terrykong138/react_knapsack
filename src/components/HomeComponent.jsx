@@ -37,6 +37,10 @@ const [componentConfig, setComponentConfig] = useState({component: "All", mpros:
  const SelectedComponent = formComponents[componentConfig.component];
   return (
     <div className='home-container'>
+      <div className='box-home-title'>
+      <h1>Premium Knapsacks</h1>     
+      <p>Discover our collection of high-quality backpacks designed for every adventure, from urban commuting to wilderness expeditions.</p>
+      </div>
       <NavbarHome   switchComponent={handleReplaceComponent} />
        <CurrentComponent switchComponent={handleReplaceComponent} config={componentConfig} /> 
 
