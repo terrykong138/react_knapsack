@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useCallback } from 'react';
-import LogInForm from './LoginForm';
+import LogInForm from './LogInForm';
 import SignUpForm from './SignUpForm';
 // import NavbarHome from './NavbarHome';
 // import ContentCards from './ContentCards';
