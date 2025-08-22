@@ -15,49 +15,7 @@ import CartForm from './CartForm';
 import { useState } from 'react';
 // import HomeComponent from './HomeComponent';
 function Navbar({switchComponent, logInPros}) {
-    // const [logInState, setLogInState] = useState("logOut");
- console.log("window.myKnapsackData",window.myKnapsackData);
-    // const LogInSetText = () => {
-    //    const liItem = document.getElementById("logIn");
-    //    if (liItem !== null && liItem !== undefined) {
-    //      liItem.innerText = "DashBoard";
-    //      liItem.style.color = "red";
-       
-    //    };
-    //   return () => switchComponent({
-    //         component: "SignIn",
-    //         pros: {}
-    //      })
-        
-    //     } ;
-    
-  
-    // const showLogInPage = () => {};
-    // const showDashBoard = () => {};
-    // const logInAction = () => {
-    //     setLogInState(() => {
-    //         switch (logInState) {
-    //             case "logOut" : {
-    //                 if (logInState !== "dashBoard") {
-    //                  //  if ( showLogInPage()===true){
-    //                 //     LogInSetText();
-    //                 //     logInState = "logIn";
-    //                   //  };
-    //                    LogInSetText();
-    //                    return  "logIn";
-    //             };
-    //             break;
 
-    //             }
-    //             case "dashBoard" :{
-    //                 showDashBoard();
-    //                 return "dashBoard";
-    //             }  
-    //             default : return "logOut";
-
-    //         }       
-    //         });
-    // } 
   return (
      <nav className='topNav' id="topNav">
       <h2 className='topNav-title'>KnapsackShop</h2>

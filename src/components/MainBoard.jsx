@@ -53,7 +53,7 @@ const handleReplaceComponent = useCallback((newComponent, config) => {
 
             const signUpElement = document.getElementById("logOut");
              signUpElement.textContent = "Sing Up";
-             signUpElement.style.color = "White";
+             signUpElement.style.color = "#192b33";
              window.myKnapsackData.signUpItemState = "signUp";
         }
       }

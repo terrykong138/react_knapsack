@@ -9,7 +9,7 @@ function NavbarHome({switchComponent}) {
 //    }   
   return (
      <nav className='HomeNav'>
-      <ul className='menu-lists'>
+      <ul className='menu-lists homeNavItem'>
         <li onClick={( ) =>{
             switchComponent(ContentCards,{component: "All", mpros: { }})}
            }   

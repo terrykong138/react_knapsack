@@ -138,8 +138,13 @@ margin-top: var(--nav-height);
   flex-direction: column;
   justify-content: center;
 }
-
+.homeNavItem li {
+   background-color: var(--primary-7);
+  border-radius: 0.2rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem var(--primary-7);
+}
 /* ======content cards */
+
 .cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -267,7 +272,7 @@ margin-top: var(--nav-height);
    }
 
 }
-
+}
 /* ==========DashBoard========== */
 .dashBoar {
 margin-top: var(--nav-height);

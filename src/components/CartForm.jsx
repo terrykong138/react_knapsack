@@ -109,7 +109,12 @@ if (window.myKnapsackData.isLogIn ===false) {
                   <a>Tota </a>
                 <a>${itemConfig.OrderTotalP}</a>
                 </div>
-                <button onClick={handleCheckOut}>Proceed To Check OUt </button>
+                { window.myDataNewOrderdetails.length > 0 ? ( 
+                   <button onClick={handleCheckOut}>Proceed To Check OUt </button> ) : (
+                     <button disabled >Proceed To Check OUt </button>
+                   )
+                }
+               
               </div>
           </div>
      </div>

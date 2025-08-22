@@ -119,7 +119,7 @@ const handleAddToCart = () => {
   console.log("window.myDataNewOrderdetails",window.myDataNewOrderdetails); 
 }
     return (
-    <div className='card'>
+    <div className='card itemCard'>
         <div className='box-image'>
             <img src={imageSrcP} alt={productTitleP} />
             <p className='p-productType'>{productTypeP}</p>
