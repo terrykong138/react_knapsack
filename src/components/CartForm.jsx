@@ -16,13 +16,14 @@ var orderTotal = orderSum - orderSum * taxRate ;
 const updateData =() =>{
 function myCountCal(item) {
      orderCount += item.count;
-     orderSum += item.sum;
+     orderSum +=  item.sum;
      }
     window.myDataNewOrderdetails.forEach(myCountCal);
 
-   orderTax = orderSum * taxRate;
-    orderTotal = orderSum - orderTax ;
-    return [orderCount,orderSum,orderTax,orderTotal]
+   orderTax =Math.round( orderSum * taxRate * 100) / 100;
+   const temOrderSum = Math.round(orderSum * 100) / 100;
+    orderTotal = temOrderSum + orderTax ;
+    return [orderCount,temOrderSum ,orderTax,orderTotal];
 }
 const configdata = updateData();
   // const [CurrentComponent, setCurrentComponent] = useState((swith) => ThemeCards );
@@ -34,7 +35,7 @@ const handleItemConfig =(config) =>{
 // =============handle Check Out=================
 const clearWorkPlace = () =>{
 const transtToOrders =(item) => {
-    window.myDataOrders.push(item)
+    window.myDataOrders.push(item);
 
   }
  window.myDataTemOrders.forEach(transtToOrders);
@@ -87,11 +88,14 @@ if (window.myKnapsackData.isLogIn ===false) {
             ))}
           
           </div>
-          <div className='cards orderSum' id="cardsOrderSum">
-              <div className='card orderSumFlex' id="cardOrderSum">
+       
 
-                <h3>Order Summary</h3>
+        <div className='cards orderSum' id="cardsOrderSum">
+          <div className='card orderSumFlex' id="cardOrderSum">
+          
+                  <h3>Order Summary</h3>
                 <div className='flexrowstart'>
+                            
                    <a>SubTotal ({itemConfig.orderCoutP} Items)</a>
                    <a>${itemConfig.orderSumP}</a>
                 </div>              
@@ -103,21 +107,24 @@ if (window.myKnapsackData.isLogIn ===false) {
                     <a>Tax </a>
                     <a>${itemConfig.orderTaxP}</a>
                 </div>              
-              </div>
-              <div className='box sumTotal'>
-                <div className="box flex">
-                  <a>Tota </a>
-                <a>${itemConfig.OrderTotalP}</a>
-                </div>
-                { window.myDataNewOrderdetails.length > 0 ? ( 
-                   <button onClick={handleCheckOut}>Proceed To Check OUt </button> ) : (
+           </div>
+              <div className='sumTotal'>
+                    <div className="flexrowstart">
+                    <h4>Tota </h4>
+                    <h4>${itemConfig.OrderTotalP}</h4>
+                   </div>
+                      { window.myDataNewOrderdetails.length > 0 ? ( 
+                      <button onClick={handleCheckOut}>Proceed To Check OUt </button> ) : (
                      <button disabled >Proceed To Check OUt </button>
-                   )
-                }
-               
+                     )
+                     }
               </div>
-          </div>
-     </div>
+
+        </div>
+          
+              
+        
+      </div>
 
     </div>
   );

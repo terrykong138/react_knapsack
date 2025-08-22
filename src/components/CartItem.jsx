@@ -13,7 +13,8 @@ const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, 
     if (workOrderItem !== undefined) {
         let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
         window.myDataNewOrderdetails[index].count =countP;
-        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        const temItemSum = window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        window.myDataNewOrderdetails[index].sum = Math.round(temItemSum * 100 )/ 100 ;
         return  window.myDataNewOrderdetails[index].count;
       } else  return -1;
     }
@@ -22,7 +23,8 @@ const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, 
      let orderSum = 0;
     let orderItemCount = 0;
     let orderTax = 0;
-    let orderTotal = orderSum - orderSum * taxRate ;
+    let temTax = orderSum * taxRate;
+    let orderTotal = Math.round((orderSum - temTax)*100)/100 ;
     let orderCout = 0;
 
     function myCountCal(item) {
@@ -30,10 +32,12 @@ const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, 
         orderSum += item.sum;
     }
     window.myDataNewOrderdetails.forEach(myCountCal);
+    const temOrderTax = orderSum * taxRate;
 
-    orderTax = orderSum * taxRate;
-    orderTotal = orderSum - orderTax ;
-    return [orderCout ,orderSum,orderTax,orderTotal];
+    orderTax = Math.round(temOrderTax * 100) / 100;
+    const  temOrderTotal = orderSum + orderTax ;
+    orderTotal = Math.round(temOrderTotal * 100)/100 ;
+;    return [orderCout ,orderSum,orderTax,orderTotal];
     }
 
        const getItemCount = (idStrin) =>{
@@ -55,11 +59,12 @@ const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, 
  const minusOrderItemCount =() => {
         if (newItemCount >1) {
             newItemCount -=1;
-            newItemsSum  = priceP *  newItemCount;
+           let temItemSum = priceP *  newItemCount;
+            newItemsSum  = Math.round(temItemSum * 100) / 100 ;
             newItemCount=updateNewOrderItemCount(itemId, newItemCount);
             totalItemCount = getOrderTotalItemCount();
             changeCartSup(totalItemCount);
-            const taxRate=0.18;
+            // const taxRate=0.18;
             let newConfigArr = updateData();
             handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
 
@@ -69,11 +74,12 @@ const CartItem = ({handleItemConfigF,config, itemId, imageSourceP,  itemTitleP, 
 }
 const pulsOrderItemCount =() =>{
             newItemCount +=1;
-            newItemsSum  = priceP *  newItemCount;
+            let temItemSum = priceP  *  newItemCount;
+            newItemsSum  = Math.round(temItemSum * 100) / 100;
             newItemCount=updateNewOrderItemCount(itemId, newItemCount);
             totalItemCount = getOrderTotalItemCount();
             changeCartSup(totalItemCount);
-            const taxRate=0.18;
+            // const taxRate=0.18;
             let newConfigArr = updateData();
             handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
 
@@ -93,7 +99,7 @@ const handleRemove = () => {
     
          totalItemCount = getOrderTotalItemCount();
             changeCartSup(totalItemCount);
-            const taxRate=0.18;
+            // const taxRate=0.18;
             let newConfigArr = updateData();
             handleItemConfigF({orderCoutP:newConfigArr[0] ,orderSumP:newConfigArr[1] , orderTaxP:newConfigArr[2] , OrderTotalP:newConfigArr[3]})
   

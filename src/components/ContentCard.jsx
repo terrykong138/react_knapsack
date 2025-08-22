@@ -31,7 +31,8 @@ const appendNewOrderItem = (productId, workProductInfosP, productCount) => {
           newOrderItem.theme = workProductInfosP.productType;
             newOrderItem.price = workProductInfosP.price;
            newOrderItem.count = productCount;
-           newOrderItem.sum = workProductInfosP.price * productCount;
+           let temOrderSum = workProductInfosP.price * productCount;
+           newOrderItem.sum = Math.round(temOrderSum * 100) / 100;
            window.myDataNewOrderdetails.push(newOrderItem);
            console.log(window.myDataNewOrderdetails)
 
@@ -48,7 +49,8 @@ const updateNewOrderItemCount = (productId,countP) => {
     if (workOrderItem !== undefined) {
         let index = window.myDataNewOrderdetails.indexOf(workOrderItem);
         window.myDataNewOrderdetails[index].count = window.myDataNewOrderdetails[index].count+countP;
-        window.myDataNewOrderdetails[index].sum =  window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+       let temSum =  window.myDataNewOrderdetails[index].price * window.myDataNewOrderdetails[index].count ;
+        window.myDataNewOrderdetails[index].sum = Math.round(temSum * 100) / 100;
         return  window.myDataNewOrderdetails[index].count;
       } else  return -1;
     }
