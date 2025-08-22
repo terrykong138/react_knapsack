@@ -87,19 +87,26 @@ if (window.myKnapsackData.isLogIn ===false) {
             ))}
           
           </div>
-          <div className='cards orderSum' id="cardOrderSum">
-              <div className='card orderSum' id="cardOrderSum">
+          <div className='cards orderSum' id="cardsOrderSum">
+              <div className='card orderSumFlex' id="cardOrderSum">
+
                 <h3>Order Summary</h3>
-                <a>SubTotal({itemConfig.orderCoutP} Items)</a>
-                <a>${itemConfig.orderSumP}</a>
-                <a>Shipping</a>
-                <a>Free</a>
-                <a>Tax</a>
-            <a>${itemConfig.orderTaxP}</a>
+                <div className='flexrowstart'>
+                   <a>SubTotal ({itemConfig.orderCoutP} Items)</a>
+                   <a>${itemConfig.orderSumP}</a>
+                </div>              
+                <div className='flexrowstart'>
+                  <a>Shipping </a>
+                   <a>Free</a>
+                </div>                
+                <div className='flexrowstart'>
+                    <a>Tax </a>
+                    <a>${itemConfig.orderTaxP}</a>
+                </div>              
               </div>
               <div className='box sumTotal'>
                 <div className="box flex">
-                  <a>Total</a>
+                  <a>Tota </a>
                 <a>${itemConfig.OrderTotalP}</a>
                 </div>
                 <button onClick={handleCheckOut}>Proceed To Check OUt </button>

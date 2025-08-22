@@ -16,7 +16,7 @@ const SignUpForm = ({switchComponent}) => {
   // }
   return (
     
-     <form className='SignUpForm'>
+     <form className='signUpForm'>
         <h3>Create Account</h3>
         <p>Join KnapsackShop and start your adventure</p>
         <label>User Name</label>
