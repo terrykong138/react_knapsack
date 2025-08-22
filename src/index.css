@@ -179,6 +179,13 @@ margin-top: var(--nav-height);
     z-index: 1;
 }
 /* ========viewDetails========= */
+.viewDetails{
+margin: 1rem auto;
+width: 70%;
+}
+.addToCartBtn {
+  font-size: medium;
+}
 .box-keyFeatures{
   display: flex;
   flex-direction: row;

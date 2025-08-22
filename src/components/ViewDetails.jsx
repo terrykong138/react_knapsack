@@ -58,7 +58,7 @@ const handleAddtoCart = () => {
 }
 
 return (
-      <div className='card'>
+      <div className='card viewDetails'>
         {/* <button><i className="fa-solid fa-arrow-left"></i>Back to Products</button> */}
         <div className='box-image'>
             <img src={config.mpros.imageSrc} alt={config.mpros.productTitle} />
@@ -95,7 +95,11 @@ return (
             
         </div>
         <div>
-            <button id="addToCart" onClick={handleAddtoCart}><i className="fa-regular fa-cart-shopping"></i>Add to Cart</button>
+            {config.mpros.isInStock === true ? ( 
+                <button className="addToCartBtn" onClick={handleAddtoCart}><i className="fa-regular fa-cart-shopping"></i>Add to Cart</button> ) : (
+                    <button className="addToCartBtn" disabled ><i className="fa-regular fa-cart-shopping"></i>Add to Cart</button> 
+                )
+            }          
         </div>
         <div className='box viewDetailsFoot'>
             <div className='box favorable'>

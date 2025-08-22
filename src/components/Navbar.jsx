@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInForm from './LoginForm';
+import LogInForm from './LogInForm';
 import SignUpForm from './SignUpForm';
 import LogOut from './LogOut';
 // import NavbarHome from './NavbarHome';
