@@ -113,7 +113,7 @@ if (!isVisible) return null;
                 <h5>${priceP}</h5>
             </div>
         </div>
-        <div className='box flex-row'>
+        <div className='box flex-row cartItemRightBox'>
             <div className='box flex-row cartItemButtons' >
                 <button onClick={minusOrderItemCount}>-</button>
                 <a>{newItemCount}</a>

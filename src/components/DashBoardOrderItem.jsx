@@ -4,7 +4,7 @@ const DashBoardOrderItem = ( {orderId, orderDate, value}) => {
 
     // {orderId, orderDate, title, value}
   return (
-    <div className='card flex-row'>
+    <div className='card flex-row dashBoardOrderItem'>
         <div className='box flex-column'>
          <h3>{orderId}</h3>
         <h5>{orderDate}</h5>
@@ -13,7 +13,7 @@ const DashBoardOrderItem = ( {orderId, orderDate, value}) => {
             <h3>{prosP.title}</h3>
             <h5>Processing</h5>
         </div> */}
-         <div className='box flex-column'>
+         <div className='box flex-column '>
             <h3>{value}</h3>
             <button>Tarck Order</button>
         </div>
